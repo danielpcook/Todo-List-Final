@@ -1,0 +1,71 @@
+#heading {
+  width: 300px;
+  border: 15px darkblue;
+  padding: 50px;
+  margin: auto;
+}
+
+.main_list{
+  text-align: center;
+}
+
+.input-bar{
+  width: 600px;
+}
+
+#task-prompt{
+  text-align: center;
+}
+
+#prompt{
+  text-align: center;
+}
+
+.choices{
+  list-style-type: none;
+}
+
+body{
+  background-color: #18529F;
+  color: whitesmoke;
+  
+}
+
+.nav-link{
+  color: black;
+}
+
+.main_list{
+  list-style-type: none;
+}
+
+#todolist{
+  margin: 70px;
+  border-color: darkgray;
+}
+
+.container{
+  background-color: whitesmoke;
+  border-style: solid;
+  border-color: black;
+  color: black;
+}
+
+.list-container{
+  border-width: 5px;
+  background-color: whitesmoke;
+  border-style: solid;
+  border-color: black;
+  color: black;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 20px;
+max-width: 600px;
+margin: 20px auto;
+padding: 20px;
+}

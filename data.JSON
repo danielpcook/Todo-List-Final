@@ -1,0 +1,42 @@
+{
+    "categories": [
+        {
+            "title": "Lifestyle:",
+            "description": "These tasks are for health, fitness, and other lifestyle goals",
+            "url": "https://openclipart.org/image/800px/254287"
+        },
+        {
+            "title": "Work:",
+            "description": "These tasks are for work-related issues and goals",
+            "url": "https://openclipart.org/image/800px/325188"
+        },
+        {
+            "title": "School:",
+            "description": "These tasks are for school-related work, homework, and school projects",
+            "url": "https://openclipart.org/image/800px/191354"
+        },
+        {
+            "title": "Other/Miscellaneous:",
+            "description": "Tasks that don't fit into any other category",
+            "url": "https://openclipart.org/image/800px/79363"
+        }
+        
+    ],
+    "examples": [
+        {
+            "title": "Example 1",
+            "description": "This is an example of what a list might look like for someone who works a full time job during the week",
+            "url":"./images/listexample1.png"
+        },
+        {
+            "title": "Example 2",
+            "description": "This list shows a more well-rounded list for someone who works and attends school",
+            "url": "./images/listexample2.png"
+        },
+        {
+            "title": "Example 3",
+            "description": "This is a real world example of a todo list from one of the authors of this page",
+            "url": "./images/listexample3.png"
+        }
+    ]
+}

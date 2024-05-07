@@ -175,8 +175,7 @@ app.delete("/task/:tid", async (req, res) => {
     }
     // Item does NOT exist
     // Proceed to delete it
-    const name = req.params.name;
-    const deleteResult = await db.query("DELETE FROM task_collection WHERE name= ?", [name]);
+    const deleteResult = await db.query("DELETE FROM task_collection WHERE tid = ?", [item]);
     // success
     const msg = "Success in DELETE item :"+deleteResult;
     console.log(msg);

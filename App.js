@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
+import listexample1 from "./images/listexample1.png"
+import listexample2 from "./images/listexample2.png"
+import listexample3 from "./images/listexample3.png"
 import "bootstrap/dist/css/bootstrap.css";
 
 function App() {
@@ -11,20 +14,22 @@ function App() {
       <div>
         <nav class="navbar navbar-expand-lg bg-body-tertiary" id = "navbar-main">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
+          <a class="navbar-brand" href="#">TodoList</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <button onClick={() => navigate('/categoryview')}>Home</button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <button className = "w-80 btn btn-primary btn-sm border-dark" onClick={() => navigate('/categoryview')}>Home</button>
               </li>
-              <li className="nav-item">
-              <button onClick={() => navigate('/authorinfo')}>About the Authors</button>
+              <li class="nav-item">
+              <button className = "w-80 btn btn-primary btn-sm border-dark" onClick={() => navigate('/authorinfo')}>About the Authors</button>
               </li>
-              
-            </ul>
+              <li class="nav-item">
+              <button className = "w-80 btn btn-primary btn-sm border-dark" onClick={() => navigate('/examples')}>Examples</button>
+              </li>
+              </ul>
           </div>
         </div>
       </nav>
@@ -110,6 +115,8 @@ const AddTask = () => {
     console.error('Error adding item:', error);
     alert('Error adding robot:'+error.message); // Display alert if there's an error
     });
+
+    navigate('/categoryview');
     }
 
   return(
@@ -246,6 +253,8 @@ const UpdateTask = () => {
       console.error('Error updating item:', error);
       alert('Error updating collection:'+error.message); // Display alert if there's an error
       });
+
+      navigate('/categoryview');
   }
   
 
@@ -345,7 +354,7 @@ const UpdateTask = () => {
 
     const deleteOneTask = (tid) => {
       console.log("Task to delete :", tid);
-      fetch("http://localhost:4000/task/" + tid, {
+      fetch(`http://localhost:4000/task/${tid}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({"tid":tid}),
@@ -379,20 +388,23 @@ const UpdateTask = () => {
       }
 
     return(
-      <div>
+      <div className = "bg-primary blue">
         <nav class="navbar navbar-expand-lg bg-body-tertiary" id = "navbar-main">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#">TodoList</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <button onClick={() => navigate('/categoryview')}>Home</button>
+                <button className = "w-80 btn btn-primary btn-sm border-dark" onClick={() => navigate('/categoryview')}>Home</button>
               </li>
               <li class="nav-item">
-              <button onClick={() => navigate('/authorinfo')}>About the Authors</button>
+              <button className = "w-80 btn btn-primary btn-sm border-dark" onClick={() => navigate('/authorinfo')}>About the Authors</button>
+              </li>
+              <li class="nav-item">
+              <button className = "w-80 btn btn-primary btn-sm border-dark" onClick={() => navigate('/examples')}>Examples</button>
               </li>
               </ul>
           </div>
@@ -400,20 +412,20 @@ const UpdateTask = () => {
       </nav>
 
       <div id = "heading">
-        <h2 class = "main_list">Welcome<hr></hr></h2>
-        <p class = "main_list"><strong>Create a to-do list to plan your tasks</strong></p>
+        <h2 class = "text-light main_list">Welcome<hr></hr></h2>
+        <p class = "text-light main_list"><strong>Create a to-do list to plan your tasks</strong></p>
       </div>
 
       <div id = "prompt">
         <p></p>
-        <button id = "add-task" onClick={() => navigate('/addtask')}>Add New Task</button>
-        <button id = "update-task" onClick={() => navigate('/updatetask')}>Update a Task By Number</button>
-        <button id = "clear-list" onClick={clearList}>Clear List</button>
+        <button className = "w-80 btn btn-primary btn-sm border" id = "add-task" onClick={() => navigate('/addtask')}>Add New Task</button>
+        <button className = "w-80 btn btn-primary btn-sm border" id = "update-task" onClick={() => navigate('/updatetask')}>Update a Task By Number</button>
+        <button className = "w-80 btn btn-primary btn-sm border" id = "clear-list" onClick={clearList}>Clear List</button>
       </div>
 
       <div id = "todolist">
         <div>
-          <h3 class = "main_list"><u>Current List of Tasks</u></h3>
+          <h3 class = "text-light text-center"><u>Current List of Tasks</u></h3>
         </div>
         <div class="grid">
             <div class="list-container">
@@ -453,14 +465,14 @@ const UpdateTask = () => {
             </div>
           </div>
           <div id="prompt">
-          <button class="text-center" onClick={() => navigate('/timelineview')}>View Timeline</button>
-          <button class="text-center" onClick={() => navigate('/priorityview')}>View By Priority</button>
+          <button className = "w-80 btn btn-primary btn-sm text-center border" onClick={() => navigate('/timelineview')}>View Timeline</button>
+          <button className = "w-80 btn btn-primary btn-sm text-center border"  onClick={() => navigate('/priorityview')}>View By Priority</button>
           </div>
           <br></br>
-          <div>
-            <h4>Delete A Task From List Here</h4>
+          <div class="container">
+            <h4>Delete A Task From List</h4>
             <input type="text" placeholder="Enter ID of Task..." onChange={(e) => setToDelete(e.target.value)} />
-            <button onClick={() => deleteOneTask(deleteId)}>Delete</button>
+            <button className = "w-80 btn btn-primary btn-sm border" onClick={() => deleteOneTask(deleteId)}>Delete</button>
           </div>
 
       <footer class="text-body-secondary py-5">
@@ -469,7 +481,7 @@ const UpdateTask = () => {
             Click <a href="#">here</a> to return to top
           </p>
           <p class="mb-1">Task Planner &copy; for SE 319 Spring 24</p>
-          <p class="mb-0">&copy; February 2024</p>
+          <p class="mb-0">&copy; May 2024</p>
           <p>Daniel Daugherty, Daniel Cook</p>
         </div>
       </footer>
@@ -497,17 +509,20 @@ const UpdateTask = () => {
         <div>
         <nav class="navbar navbar-expand-lg bg-body-tertiary" id = "navbar-main">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#">TodoList</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <button onClick={() => navigate('/categoryview')}>Home</button>
+                <button className = "w-80 btn btn-primary btn-sm border-dark" onClick={() => navigate('/categoryview')}>Home</button>
               </li>
               <li class="nav-item">
-              <button onClick={() => navigate('/authorinfo')}>About the Authors</button>
+              <button className = "w-80 btn btn-primary btn-sm border-dark" onClick={() => navigate('/authorinfo')}>About the Authors</button>
+              </li>
+              <li class="nav-item">
+              <button className = "w-80 btn btn-primary btn-sm border-dark" onClick={() => navigate('/examples')}>Examples</button>
               </li>
               </ul>
           </div>
@@ -518,7 +533,7 @@ const UpdateTask = () => {
 
       {tasks.map((el) => (   
   <div key={el.tid} class = "border">
-  <div>{el.duedate} - {el.name}</div>
+  <div><strong>{el.duedate}</strong> - {el.name}</div>
   <div>Category: {el.category}</div>
   <div>{el.priority} priority</div>
   </div>
@@ -559,19 +574,22 @@ const UpdateTask = () => {
 
       return(
         <div class = 'bg-primary text-blue'>
-          <nav class="navbar navbar-expand-lg bg-body-tertiary" id = "navbar-main">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" id = "navbar-main">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#">TodoList</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <button onClick={() => navigate('/categoryview')}>Home</button>
+                <button className = "w-80 btn btn-primary btn-sm border-dark" onClick={() => navigate('/categoryview')}>Home</button>
               </li>
               <li class="nav-item">
-              <button onClick={() => navigate('/authorinfo')}>About the Authors</button>
+              <button className = "w-80 btn btn-primary btn-sm border-dark" onClick={() => navigate('/authorinfo')}>About the Authors</button>
+              </li>
+              <li class="nav-item">
+              <button className = "w-80 btn btn-primary btn-sm border-dark" onClick={() => navigate('/examples')}>Examples</button>
               </li>
               </ul>
           </div>
@@ -641,17 +659,20 @@ const UpdateTask = () => {
       <div>
         <nav class="navbar navbar-expand-lg bg-body-tertiary" id = "navbar-main">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#">TodoList</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <button onClick={() => navigate('/categoryview')}>Home</button>
+                <button className = "w-80 btn btn-primary btn-sm border-dark" onClick={() => navigate('/categoryview')}>Home</button>
               </li>
               <li class="nav-item">
-              <button onClick={() => navigate('/authorinfo')}>About the Authors</button>
+              <button className = "w-80 btn btn-primary btn-sm border-dark" onClick={() => navigate('/authorinfo')}>About the Authors</button>
+              </li>
+              <li class="nav-item">
+              <button className = "w-80 btn btn-primary btn-sm border-dark" onClick={() => navigate('/examples')}>Examples</button>
               </li>
               </ul>
           </div>
@@ -661,9 +682,21 @@ const UpdateTask = () => {
          <h1 class = "header">Examples of Lists<hr></hr></h1>
     <h4 class = "header">Not sure how to start? Here are some examples of lists people have made</h4>
     <div>
-        <ul class = "display" id = "example1"></ul>
-        <ul class = "display" id = "example2"></ul>
-        <ul class = "display" id = "example3"></ul>
+        <ul class = "display" id = "example1">
+        <p></p>
+            <img src={listexample1} alt="ex1" width="700" border="2px solid"></img>
+            <p><strong>Example 1: </strong>This is an example of what a list might look like for someone who works a full time job during the week<hr></hr></p>
+        </ul>
+        <ul class = "display" id = "example2">
+        <p></p>
+            <img src={listexample2} alt="ex1" width="700" border="2px solid"></img>
+            <p><strong>Example 2: </strong>This list shows a more well-rounded list for someone who works and attends school<hr></hr></p>
+        </ul>
+        <ul class = "display" id = "example3">
+        <p></p>
+            <img src={listexample3} alt="ex1" width="700" border="2px solid"></img>
+            <p><strong>Example 3: </strong>This is a real world example of a todo list from one of the authors of this page<hr></hr></p>
+        </ul>
     </div>
 
     <footer class="text-body-secondary py-5">
@@ -697,3 +730,4 @@ const UpdateTask = () => {
   );
 }
 export default App;
+

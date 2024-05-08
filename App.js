@@ -38,6 +38,7 @@ function App() {
       <h1>About the Authors<hr></hr></h1>
       <h4><u>SE/ComS319 Construction of User Interfaces, Spring 2024</u></h4>
       <h6>Date: <strong>03/09/2024</strong></h6>
+      <h6>Dr. Abraham N. Aldaco Gastelum - aaldaco@iastate.edu</h6>
       </div>
       <br></br><br></br>
       <div class="container">
@@ -143,21 +144,21 @@ const AddTask = () => {
                 <ul class="choices">
                     <li>
                         <label
-                            ><input type="radio" name="question0"  checked={selectedCategory = "Work"} onChange={() => handleChangeCategory("Work")} /><span
+                            ><input type="radio" name="question0" onChange={() => handleChangeCategory("Work")} /><span
                                 >Work</span></label>
                     </li>
                     <li>
-                        <label><input type="radio" name="question0" checked={selectedCategory = "School"} onChange={() => handleChangeCategory("School")} /><span
+                        <label><input type="radio" name="question0" onChange={() => handleChangeCategory("School")} /><span
                                 >School</span></label>
                     </li>
                     <li>
                         <label
-                            ><input type="radio" name="question0" checked={selectedCategory = "Lifestyle"} onChange={() => handleChangeCategory("Lifestyle")} /><span
+                            ><input type="radio" name="question0"  onChange={() => handleChangeCategory("Lifestyle")} /><span
                                 >Lifestyle</span></label>
                     </li>
                     <li>
                         <label
-                            ><input type="radio" name="question0" checked={selectedCategory = "Other"} onChange={() => handleChangeCategory("Other")} /><span
+                            ><input type="radio" name="question0"  onChange={() => handleChangeCategory("Other")} /><span
                                 >Other/Miscellaneous</span></label>
                     </li>
                 </ul>
@@ -173,17 +174,17 @@ const AddTask = () => {
                 <ul class="choices">
                     <li>
                         <label
-                            ><input type="radio" name="question0" checked={selectedPriority = "High"} onChange={() => handleChangePriority("High")} /><span
+                            ><input type="radio" name="question0"  onChange={() => handleChangePriority("High")} /><span
                                 >High Priority</span></label>
                     </li>
                     <li>
                         <label
-                            ><input type="radio" name="question0" checked={selectedPriority = "Medium"} onChange={() => handleChangePriority("Medium")} /><span
+                            ><input type="radio" name="question0"  onChange={() => handleChangePriority("Medium")} /><span
                                 >Medium Priority</span></label>
                     </li>
                     <li>
                         <label
-                            ><input type="radio" name="question0" checked={selectedPriority = "Low"} onChange={() => handleChangePriority("Low")} /><span
+                            ><input type="radio" name="question0"  onChange={() => handleChangePriority("Low")} /><span
                                 >Low Priority</span>
                             </label>
                     </li>
@@ -195,8 +196,8 @@ const AddTask = () => {
       </form>
       </div>
 
-      <button type = "submit" id = "add-task" onClick = {handleSubmit}>Add</button>
-      <button id = "clear-list" onClick={() => navigate('/categoryview')}>Cancel</button>
+      <button className="w-80 btn btn-primary btn-sm" type = "submit" id = "add-task" onClick = {handleSubmit}>Add</button>
+      <button className="w-80 btn btn-primary btn-sm" id = "clear-list" onClick={() => navigate('/categoryview')}>Cancel</button>
       </div>
 
     </div>
@@ -274,7 +275,7 @@ const UpdateTask = () => {
               
             </div>
             <button className="w-80 btn btn-primary btn-sm" type="submit" onClick={updateOneTask}>Update</button>
-            <button className="w-80 btn btn-primary btn-sm" type="submit" onClick={() => navigate('/categoryview')}>Back</button>
+            <button className="w-80 btn btn-primary btn-sm" type="submit" onClick={() => navigate('/categoryview')}>Cancel</button>
       </div>
     </div>
   )
@@ -429,7 +430,7 @@ const UpdateTask = () => {
         </div>
         <div class="grid">
             <div class="list-container">
-              <p>Work Tasks</p>
+              <p><u>Work Tasks</u></p>
                 <ul id = "tasklist1" class ="main_list">
                 {worktasks.map((el) => (   
                   <li>{el.tid}.<strong>{el.name}</strong>, {el.priority} priority</li>
@@ -438,7 +439,7 @@ const UpdateTask = () => {
             </div>
         
             <div class="list-container">
-            <p>School Tasks</p>
+            <p><u>School Tasks</u></p>
                 <ul id = "tasklist2" class ="main_list">
                 {schooltasks.map((el) => (   
                   <li>{el.tid}.<strong>{el.name}</strong>, {el.priority} priority</li>
@@ -447,7 +448,7 @@ const UpdateTask = () => {
             </div>
         
             <div class="list-container">
-            <p>Lifestyle Tasks</p>
+            <p><u>Lifestyle Tasks</u></p>
                 <ul id = "tasklist3" class ="main_list">
                 {lifetasks.map((el) => (   
                   <li>{el.tid}.<strong>{el.name}</strong>, {el.priority} priority</li>
@@ -456,7 +457,7 @@ const UpdateTask = () => {
             </div>
         
             <div class="list-container">
-            <p>Other/Misc. Tasks</p>
+            <p><u>Other/Misc. Tasks</u></p>
                 <ul id = "tasklist1" class ="main_list">
                 {othertasks.map((el) => (   
                   <li>{el.tid}.<strong>{el.name}</strong>, {el.priority} priority</li>
@@ -528,16 +529,26 @@ const UpdateTask = () => {
           </div>
         </div>
       </nav>
-
-      <button class="text-center" onClick={() => navigate('/categoryview')}>Back</button>
-
+      <h2>Timeline of Your Tasks</h2>
       {tasks.map((el) => (   
-  <div key={el.tid} class = "border">
+  <div key={el.tid} className = "border">
   <div><strong>{el.duedate}</strong> - {el.name}</div>
-  <div>Category: {el.category}</div>
-  <div>{el.priority} priority</div>
+  <div>Category: {el.category} - {el.priority} priority</div>
+  <p></p>
   </div>
 ))}
+
+<footer class="text-body-secondary py-5">
+        <div class="container" id = "footer">
+          <p class="float-end mb-1">
+            Click <a href="#">here</a> to return to top
+          </p>
+          <p class="mb-1">Task Planner &copy; for SE 319 Spring 24</p>
+          <p class="mb-0">&copy; May 2024</p>
+          <p>Daniel Daugherty, Daniel Cook</p>
+        </div>
+      </footer>
+      <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
       </div>
       )
@@ -724,7 +735,7 @@ const UpdateTask = () => {
       <Route path="/priorityview" element={<PriorityView />} />
       <Route path="/addtask" element={<AddTask />} />
       <Route path="/updatetask" element={<UpdateTask />} />
-      <Route path="/" element={<AuthorInfo />} /> {/* Default view */}
+      <Route path="/" element={<CategoryView />} /> {/* Default view */}
       </Routes>
     </Router>
   );
